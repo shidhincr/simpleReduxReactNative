@@ -1,52 +1,29 @@
 import React from 'react-native';
 import Button from 'react-native-button';
+import {increment, decrement} from '../actions/actions';
+
 let {
   Text, View, StyleSheet
   }  = React;
 
 const Counter = class Counter extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      number: props.start || 0
-    };
-    // Need to bind for accessing `this` inside the method
-    // Known issue with React.Component class
-    this._increment = this._increment.bind(this);
-    this._decrement = this._decrement.bind(this);
-  }
-
   render() {
     return (
       <View>
         <Text style={styles.message}>
-          Number is = {this.state.number}
+          Number is = {this.props.number}
         </Text>
         <Button
           style={styles.button}
-          onPress={this._increment}>
+          onPress={increment}>
           +
         </Button>
         <Button style={styles.button}
-                onPress={this._decrement}>
+                onPress={decrement}>
           -
         </Button>
       </View>
     );
-  }
-
-  _increment() {
-    let {number} = this.state;
-    this.setState({
-      number: number + 1
-    });
-  }
-
-  _decrement() {
-    let {number} = this.state;
-    this.setState({
-      number: number - 1
-    });
   }
 };
 

@@ -5,19 +5,35 @@
 
 import React from 'react-native';
 import Counter from './components/counterAndroid'
+import {createStore} from 'redux';
+import store from './data/store';
 
 let {
   AppRegistry,
   StyleSheet,
-  View,
-  Text,
+  View
   } = React;
 
+/**
+ * ReactNativeRedux is a container component
+ */
+
 class ReactNativeRedux extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = store.getState();
+  }
+
+  componentDidMount() {
+    store.subscribe(()=> {
+      this.setState(store.getState());
+    });
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Counter start={10}></Counter>
+        <Counter number={this.state.number}></Counter>
       </View>
     );
   }
