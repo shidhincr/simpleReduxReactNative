@@ -4,8 +4,10 @@
 'use strict';
 
 import React from 'react-native';
-import Counter from './components/counterAndroid'
+import {Provider} from 'react-redux';
 import {createStore} from 'redux';
+import CounterContainer from './components/counterContainer';
+import Counter from './components/counter';
 import store from './data/store';
 
 let {
@@ -14,27 +16,14 @@ let {
   View
   } = React;
 
-/**
- * ReactNativeRedux is a container component
- */
-
 class ReactNativeRedux extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = store.getState();
-  }
-
-  componentDidMount() {
-    store.subscribe(()=> {
-      this.setState(store.getState());
-    });
-  }
-
   render() {
     return (
-      <View style={styles.container}>
-        <Counter number={this.state.number}></Counter>
-      </View>
+      <Provider store={store}>
+          <View style={styles.container}>
+            <CounterContainer></CounterContainer>
+          </View>
+      </Provider>
     );
   }
 }

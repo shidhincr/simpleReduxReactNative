@@ -1,6 +1,6 @@
 'use strict';
 
-export default function counter(state = { number: 0 }, action) {
+export default function counter(state = { number: 10 }, action) {
   switch (action.type) {
     case 'INCREMENT':
       return {...state, number: state.number + 1 };

@@ -1,6 +1,5 @@
 import React from 'react-native';
 import Button from 'react-native-button';
-import {increment, decrement} from '../actions/actions';
 
 let {
   Text, View, StyleSheet
@@ -8,10 +7,11 @@ let {
 
 const Counter = class Counter extends React.Component {
   render() {
+    let { number, increment, decrement } = this.props;
     return (
       <View>
         <Text style={styles.message}>
-          Number is = {this.props.number}
+          Number is = {number}
         </Text>
         <Button
           style={styles.button}
