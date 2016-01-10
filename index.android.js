@@ -7,7 +7,6 @@ import React from 'react-native';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import CounterContainer from './components/counterContainer';
-import Counter from './components/counter';
 import store from './data/store';
 
 let {

@@ -2,8 +2,9 @@
 
 import React from 'react-native';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import Counter from './counter';
-import {increment, decrement} from '../actions/actions';
+import * as actions from '../actions/actions';
 
 var mapStateToProps = state => {
   return {
@@ -12,10 +13,7 @@ var mapStateToProps = state => {
 };
 
 var mapDispatchToProps = dispatch => {
-  return {
-    increment: () => dispatch(increment()),
-    decrement: () => dispatch(decrement())
-  };
+  return { ...bindActionCreators(actions, dispatch) };
 };
 
 const CounterContainer = connect(
